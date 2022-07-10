@@ -3,6 +3,9 @@
 //
 
 #include "AnagramMap.h"
+#include <string>
+
+using namespace std;
 
 string AnagramMap::sortString(string s) {
     std::sort(s.begin(), s.end());
@@ -11,9 +14,10 @@ string AnagramMap::sortString(string s) {
 
 vector<string> AnagramMap::getAnagrams(const string& word) {
 
+
     string sortedString = sortString(word);
-    if(map.count(sortedString) > 0){
-        auto anagramsFromMap = map.at(sortedString);
+    if(anaMap.find(sortedString) != anaMap.end()){
+        auto anagramsFromMap = anaMap.at(sortedString);
         vector<string> anagrams;
         for(auto & anagram: anagramsFromMap){
             if(anagram != word){
@@ -30,17 +34,17 @@ vector<string> AnagramMap::getAnagrams(const string& word) {
 void AnagramMap::checkInWord(const string &word) {
     string sortedString = sortString(word);
 
-    if(map.count(sortedString) > 0){
-        vector<string> anagrams = map.at(sortedString);
+    if(anaMap.count(sortedString) > 0){
+        vector<string> anagrams = anaMap.at(sortedString);
         vector<string> newVec;
         newVec.push_back(word);
         newVec.insert(newVec.end(), anagrams.begin(), anagrams.end());
-        map.erase(sortedString);
-        map.insert({sortedString, newVec});
+        anaMap.erase(sortedString);
+        anaMap.insert({sortedString, newVec});
     } else {
         vector<string> newVec;
         newVec.push_back(word);
-        map.insert({sortedString, newVec});
+        anaMap.insert({sortedString, newVec});
     }
 }
 

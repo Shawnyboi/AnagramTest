@@ -17,7 +17,8 @@ bool DictionaryLoader::loadDictionary() {
     } else {
         cerr << "Failed to open file at path " << pathToDictionary << endl;
     }
-     return !words.empty();
+
+    return !words.empty();
 }
 
 vector<string> *DictionaryLoader::getWords() {

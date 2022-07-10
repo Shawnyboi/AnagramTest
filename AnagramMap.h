@@ -15,7 +15,7 @@
 using namespace std;
 class AnagramMap {
 private:
-    unordered_map<string, vector<string>> map;
+    unordered_map<string, vector<string>> anaMap;
     static string sortString(string s);
     void checkInWord(const string& word);
 
