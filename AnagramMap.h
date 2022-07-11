@@ -11,12 +11,14 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <cctype>
 
 using namespace std;
 class AnagramMap {
 private:
     unordered_map<string, vector<string>> anaMap;
     static string sortString(string s);
+    static string makeStringLowercase(string s);
     void checkInWord(const string& word);
 
 public:

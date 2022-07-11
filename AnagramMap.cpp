@@ -3,12 +3,19 @@
 //
 
 #include "AnagramMap.h"
-#include <string>
+
 
 using namespace std;
 
 string AnagramMap::sortString(string s) {
-    std::sort(s.begin(), s.end());
+    s = makeStringLowercase(s);
+    sort(s.begin(), s.end());
+    return s;
+}
+
+string AnagramMap::makeStringLowercase(string s) {
+    transform(s.begin(), s.end(), s.begin(),
+              [](unsigned char c){return tolower(c); });
     return s;
 }
 
@@ -20,7 +27,7 @@ vector<string> AnagramMap::getAnagrams(const string& word) {
         auto anagramsFromMap = anaMap.at(sortedString);
         vector<string> anagrams;
         for(auto & anagram: anagramsFromMap){
-            if(anagram != word){
+            if(anagram != makeStringLowercase(word)){
                 anagrams.push_back(anagram);
             }
         }
@@ -53,3 +60,4 @@ void AnagramMap::createAnagramMap(const vector<string>* words) {
         checkInWord(word);
     }
 }
+
